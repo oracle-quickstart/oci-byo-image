@@ -1,0 +1,54 @@
+{
+  "builders": [
+    {
+      "boot_command": [
+        "<esc><wait>",
+        "install <wait>",
+        " preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/debian-10.6-ks.cfg <wait>",
+        "debian-installer=en_US.UTF-8 <wait>",
+        "auto <wait>",
+        "locale=en_US.UTF-8 <wait>",
+        "kbd-chooser/method=us <wait>",
+        "keyboard-configuration/xkb-keymap=us <wait>",
+        "netcfg/get_hostname={{ .Name }} <wait>",
+        "netcfg/get_domain=vagrantup.com <wait>",
+        "fb=false <wait>",
+        "debconf/frontend=noninteractive <wait>",
+        "console-setup/ask_detect=false <wait>",
+        "console-keymaps-at/keymap=us <wait>",
+        "grub-installer/bootdev=/dev/sda <wait>",
+        "<enter><wait>"
+      ],
+      "boot_wait": "10s",
+      "disk_size": "40960",
+      "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
+      "guest_os_type": "Debian_64",
+      "headless": "false",
+      "http_directory": "http",
+      "iso_checksum_type": "sha256",
+      "iso_checksum": "c6e7bdada5a04a639e745b41ea43ae36b796b4cf4128e3dcb3c2502ab034caa3",
+      "iso_url": "https://cdimage.debian.org/mirror/cdimage/archive/10.6.0/i386/iso-cd/debian-10.6.0-i386-netinst.iso",
+      "keep_registered": "true",
+      "output_directory": "packer-debian-10.6-virtualbox",
+      "shutdown_command": "echo 'opc' | sudo -S /sbin/shutdown -hP now",
+      "ssh_password": "opc",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "ssh_username": "opc",
+      "type": "virtualbox-iso",
+      "virtualbox_version_file": ".vbox_version",
+      "vm_name": "debian-10.6-{{ isotime \"19970804021400\" }}"
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "execute_command": "echo 'opc' | {{.Vars}} sudo -S -E sh -eux '{{.Path}}'",
+      "expect_disconnect": true,
+      "scripts": [
+        "scripts/debian_10.6/OCI.sh",
+        "scripts/debian_10.6/cleanup.sh"
+      ]
+    }
+  ]
+}
