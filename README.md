@@ -1,4 +1,4 @@
-# Bring Your Own Image into OCI, using Packer and VirtualBox
+# Bring Your Own Image into OCI
 ## Overview
 
 This repository contains various Packer templates for spinning up images in VirtualBox that can be exported to OCI.
