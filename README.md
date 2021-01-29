@@ -3,7 +3,7 @@
 
 This repository contains various Packer templates for spinning up images in VirtualBox that can be exported to OCI.
 
-## Building the Vagrant Boxes
+## Build the VirtualBox Image
 
 ```
 ## Usage
