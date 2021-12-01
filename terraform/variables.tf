@@ -17,16 +17,24 @@ variable "compartment_ocid" {
 #  Compute Configuration   #
 ############################
 
-variable "rhel8_x86_custom_image_id" {
+#rhel6_x86
+#rhel7_x86
+#rhel8_x86
+#rhel8_aarch
+variable "versions" {
+  default = [
+      "rhel6_x86",
+  ]
 }
 
-variable "rhel8_aarch_custom_image_id" {
-}
-
-variable "rhel7_x86_custom_image_id" {
-}
-
-variable "rhel6_x86_custom_image_id" {
+variable custom_ocids {
+  type = map
+  default = {
+    "rhel6_x86"   = "ocid1.image.oc1.iad.aaaaaaaaaae6c5vgx46oghzupr4zzp4w7oez4jab3aupaqzhm7ohzrsgadua"
+    "rhel7_x86"   = "ocid1.image.oc1.iad.aaaaaaaaucv3l5qzi6z7peh4pkamprr2vrw5gqbodfpq7676ch6fi5fo5myq"
+    "rhel8_aarch" = "ocid1.image.oc1.iad.aaaaaaaatr2taxrzf6feolghswset54at7lqxkz4xizcpymbsvl6ovunthlq"
+    "rhel8_x86"   = "ocid1.image.oc1.iad.aaaaaaaahrmd7c5susd5lrg7bquqw7fsi5wpc5kgii3vhrvxgbpvqrafiveq"
+  }
 }
 
 # only used for E3 Flex shape
@@ -59,16 +67,130 @@ variable "aarch_shapes" {
       "VM.Standard.A1.Flex"
      ]
 }
+
+
 variable "x86_shapes" {
     default = [
-      "VM.Optimized3.Flex",
+      "VM.Standard1.1",
+      "VM.Standard1.16",
+      "VM.Standard1.2",
+      "VM.Standard1.8",
+      "VM.Standard1.4",
+      "VM.DenseIO2.8",
+      "VM.Standard2.1",
+      "VM.Standard2.16",
       "VM.Standard2.2",
+      "VM.Standard2.24",
+      "VM.Standard2.4",
+      "VM.Standard2.8",
+      "VM.Standard.E2.1",
       "VM.Standard.E2.2",
+      "VM.Standard.E2.4",
+      "VM.Standard.E2.8",
       "VM.Standard.E3.Flex",
       "VM.Standard.E4.Flex",
-      "VM.DenseIO2.8"
+      "VM.Optimized3.Flex"
     ]
 }
+
+/*
+valid shapes:
+      "VM.Standard1.1",
+      "VM.Standard1.16",
+      "VM.Standard1.2",
+      "VM.Standard1.8",
+      "VM.Standard1.4",
+      "VM.DenseIO2.8",
+      "VM.Standard2.1",
+      "VM.Standard2.16",
+      "VM.Standard2.2",
+      "VM.Standard2.24",
+      "VM.Standard2.4",
+      "VM.Standard2.8",
+      "VM.Standard.E2.1",
+      "VM.Standard.E2.2",
+      "VM.Standard.E2.4",
+      "VM.Standard.E2.8",
+      "VM.Standard.E3.Flex",
+      "VM.Standard.E4.Flex",
+      "VM.Optimized3.Flex"
+
+
+issues:
+      "VM.DenseIO2.24", timeout - last error: dial tcp 150.136.67.250:22: i/o timeout
+      "VM.DenseIO2.16", timeout - last error: dial tcp 158.101.122.71:22: i/o timeout
+
+invalid shapes
+       * All BM shapes
+      "VM.Standard3.Flex",
+      "DVH.Standard2.52",
+      "DVH.Standard.E2.64",
+      "DVH.Standard.E3.128",
+      "DVH.DenseIO2.52"
+      "VM.DenseIO1.4",
+      "VM.DenseIO1.16",
+      "VM.DenseIO1.8",
+      "VM.Standard.E2.1.Micro",
+
+Specialty Shapes:
+- VM.GPU2.1
+- VM.GPU3.1
+- VM.GPU3.2
+- VM.GPU3.4
+- BM.GPU2.2
+- BM.GPU3.8
+- BM.GPU4.8
+- BM.HPC2.36
+
+
+variable "complete_x86_shapes" {
+    default = [
+      "VM.Standard1.1",
+      "VM.Standard1.16",
+      "VM.Standard1.2",
+      "VM.Standard1.8",
+      "VM.Standard1.4",
+      "VM.DenseIO1.16",
+      "VM.DenseIO1.4",
+      "VM.DenseIO1.8",
+      "VM.DenseIO2.16",
+      "VM.DenseIO2.24",
+      "VM.DenseIO2.8",
+      "VM.Standard2.1",
+      "VM.Standard2.16",
+      "VM.Standard2.2",
+      "VM.Standard2.24",
+      "VM.Standard2.4",
+      "VM.Standard2.8",
+      "VM.Standard.E2.1",
+      "VM.Standard.E2.2",
+      "VM.Standard.E2.4",
+      "VM.Standard.E2.8",
+      "VM.Standard.E2.1.Micro",
+      "VM.Standard.E3.Flex",
+      "BM.Standard2.52",
+      "BM.DenseIO2.52",
+      "BM.Standard.E3.128",
+      "BM.Standard.E2.64",
+      "BM.Standard1.36",
+      "BM.HighIO1.36",
+      "BM.DenseIO1.36",
+      "VM.Standard.E4.Flex",
+      "BM.Standard.E4.128",
+      "VM.Optimized3.Flex",
+      "VM.Standard3.Flex",
+      "BM.Optimized3.36",
+      "BM.Standard3.64",
+      "DVH.Standard2.52",
+      "DVH.Standard.E2.64",
+      "DVH.Standard.E3.128",
+      "DVH.DenseIO2.52"
+    ]
+}
+*/
+
+
+
 
 #      "BM.Standard1.36"
 

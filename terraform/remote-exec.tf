@@ -1,67 +1,17 @@
-resource "null_resource" "rhel7-x86-compute-script" {
-  for_each = oci_core_instance.rhel7_x86
+resource "null_resource" "compute-script" {
+  count = length(oci_core_instance.instances)
 
   provisioner "remote-exec" {
     connection {
       type     = "ssh"
       user     = "cloud-user"
-      host     = oci_core_instance.rhel7_x86[each.key].public_ip
+      host     = oci_core_instance.instances[count.index].public_ip
       private_key = "${file(var.ssh_private_key)}"
     }
     inline = [
-      "echo 'remote-exec called'",
-      "touch ~/hello.txt"
-    ]
-  }
-}
-
-resource "null_resource" "rhel8-x86-compute-script" {
-  for_each = oci_core_instance.rhel8_x86
-
-  provisioner "remote-exec" {
-    connection {
-      type     = "ssh"
-      user     = "cloud-user"
-      host     = oci_core_instance.rhel8_x86[each.key].public_ip
-      private_key = "${file(var.ssh_private_key)}"
-    }
-    inline = [
-      "echo 'remote-exec called'",
-      "touch ~/hello.txt"
-    ]
-  }
-}
-
-resource "null_resource" "rhel8-aarch-compute-script" {
-  for_each = oci_core_instance.rhel8_aarch
-
-  provisioner "remote-exec" {
-    connection {
-      type     = "ssh"
-      user     = "cloud-user"
-      host     = oci_core_instance.rhel8_aarch[each.key].public_ip
-      private_key = "${file(var.ssh_private_key)}"
-    }
-    inline = [
-      "echo 'remote-exec called'",
-      "touch ~/hello.txt"
-    ]
-  }
-}
-
-resource "null_resource" "rhel6-x86-compute-script" {
-  for_each = oci_core_instance.rhel6_x86
-
-  provisioner "remote-exec" {
-    connection {
-      type     = "ssh"
-      user     = "cloud-user"
-      host     = oci_core_instance.rhel6_x86[each.key].public_ip
-      private_key = "${file(var.ssh_private_key)}"
-    }
-    inline = [
-      "echo 'remote-exec called'",
-      "touch ~/hello.txt"
+      "curl -sH \"Authorization: Bearer Oracle\" -L http://169.254.169.254/opc/v2/instance/ | grep \"shape\\\"\" | cut -d\" \" -f 5",
+      "touch ~/hello.txt",
+      "if [ -f ~/hello.txt ]; then echo ~/hello.txt exists ; else echo ERROR ~/hello.txt done not exist; fi"
     ]
   }
 }
