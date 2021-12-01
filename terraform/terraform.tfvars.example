@@ -1,0 +1,20 @@
+
+## RHEL
+#compartment_ocid = "ocid1.compartment.oc1..aaaaaaaaydvn3wnf5vgiopbrgl6bhjwgl2juhdznwwowkfmgtsknktfu7noq"
+
+## zeke
+compartment_ocid = "ocid1.compartment.oc1..aaaaaaaadt4ydl2rxmw3hrx4cfq6zddadglrtls3c6fsbgwg4ktabije7e5q"
+
+fingerprint="c2:79:04:9e:3a:f7:2f:8e:5d:68:5c:eb:a5:68:ef:3b"
+private_key_path="~/.oci/oci_api_key.pem"
+region="us-ashburn-1"
+ssh_public_key="ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCydx1lHoXsjhgGkG9VxfsSYRCQ23rQaghGuywUn99CU0odlpcRCx461nNsogcG1P+6eUDDT4jhdT8ulzg9favRH0AdadJLET9H0aSMNYVwHjwGVzAOpZwGOfw/gxQ9CQfKvvnyxEQDz4QGI9bqtnEpLx4cXGuWD1xEiTYIFAezZxtG2FGWxiilJuQnb5cSjBZ8EVHMZDtD9WroEMYB4pT0AbC2rYhQeqZZ8NDgEHGwt581haKjv4HoJXLM1BkSeTB6xWY9a6/VxvrgQj1qQJHhSByUZyZDqQgblizN1o0Y9YxqzqW4kiySD2E9ujKGPnZM2Xe4vvxR/fdQqzOvt9sF zkaufman@zkaufman-mac"
+tenancy_ocid="ocid1.tenancy.oc1..aaaaaaaa4mzf57gl7afpkuhti3rq76gie762ciyfwuvu6xn4tcxndj7zhi3q"
+user_ocid="ocid1.user.oc1..aaaaaaaa34g2e3qv3m465ykylse6ooax3dkz4fhal3ojqyleq42wufnewc5a"
+custom_image_id = "ocid1.custom_image_id=ocid1.image.oc1.iad.aaaaaaaatr2taxrzf6feolghswset54at7lqxkz4xizcpymbsvl6ovunthlq"
+
+## Packer
+#subnet_id = "ocid1.subnet.oc1.iad.aaaaaaaasiqlplsdzfzxbvhey4bvhlpvv4ntlc6xmy4w54usj7invcw42j7a"
+
+## RHEL VCN
+subnet_id = "ocid1.subnet.oc1.iad.aaaaaaaa6c3akdqmj6w7dymeiittd36y74wwpqtjcoqtai2ux2rxqdhilsoq"
