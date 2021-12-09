@@ -11,8 +11,7 @@
       "guest_os_type": "RedHat_64",
       "headless": false,
       "http_directory": "http",
-      "iso_checksum_type": "sha256",
-      "iso_checksum": "19d653ce2f04f202e79773a0cbeda82070e7527557e814ebbce658773fbe8191",
+      "iso_checksum": "sha256:19d653ce2f04f202e79773a0cbeda82070e7527557e814ebbce658773fbe8191",
       "iso_interface": "sata",
       "iso_url": "iso/rhel-server-7.9-x86_64-dvd.iso",
       "keep_registered": "true",
@@ -26,7 +25,7 @@
       "vboxmanage": [
         [ "modifyvm", "{{.Name}}", "--firmware", "EFI" ]
       ],  
-      "vm_name": "rhel-7.9-{{ isotime \"19970804021400\" }}"
+      "vm_name": "rhel-7.9-BM-{{ isotime \"19970804021400\" }}"
     }
   ],
   "provisioners": [

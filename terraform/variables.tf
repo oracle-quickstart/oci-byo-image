@@ -77,6 +77,8 @@ variable "x86_shapes" {
       "VM.Standard1.8",
       "VM.Standard1.4",
       "VM.DenseIO2.8",
+      "VM.DenseIO2.16",
+      "VM.DenseIO2.24",
       "VM.Standard2.1",
       "VM.Standard2.16",
       "VM.Standard2.2",
@@ -115,13 +117,21 @@ valid shapes:
       "VM.Standard.E4.Flex",
       "VM.Optimized3.Flex"
 
+BM shapes:
+      "BM.Standard2.52",
+      "BM.DenseIO2.52",
+      "BM.Standard.E3.128",
+      "BM.Standard.E2.64",
+      "BM.Standard1.36",
+      "BM.HighIO1.36",
+      "BM.DenseIO1.36",
+
 
 issues:
       "VM.DenseIO2.24", timeout - last error: dial tcp 150.136.67.250:22: i/o timeout
       "VM.DenseIO2.16", timeout - last error: dial tcp 158.101.122.71:22: i/o timeout
 
 invalid shapes
-       * All BM shapes
       "VM.Standard3.Flex",
       "DVH.Standard2.52",
       "DVH.Standard.E2.64",
