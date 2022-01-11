@@ -4,7 +4,7 @@ resource "null_resource" "compute-script" {
   provisioner "remote-exec" {
     connection {
       type     = "ssh"
-      user     = "cloud-user"
+      user     = "opc"
       host     = oci_core_instance.instances[count.index].public_ip
       private_key = "${file(var.ssh_private_key)}"
       timeout  = "10m"
